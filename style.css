@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'digital-font';
+    src: url('Digital7-rg1mL.ttf');
+}
+
+button {
+    padding: 20px;
+    font-size: 30px;
+    min-width: 70px;
+    background-color: rgb(211, 14, 14);
+    color: white;
+    cursor: pointer;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+section.main {
+    max-width: 285px;
+}
+
+section.main .display-container {
+    padding: 20px 10px;
+    min-height: 40px;
+    border: 2px solid gray;
+    font-size: 30px;
+    font-family: 'digital-font', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section.main .display-container span {
+    float: right;
+}
+
+section.main .buttons-wrapper {
+    display: flex;
+}
+
+section.main .main-container  .equal {
+    background-color: green;
+    min-width: 284px;
+}
+
+section.main .numbers-wrapper{
+display: flex;
+}
