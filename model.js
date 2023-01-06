@@ -1,12 +1,10 @@
 export default class Model {
-    constructor() { }
+    constructor() {
+        this.input = JSON.parse(localStorage.getItem('input'))
+    }
 
-    calculate = (input) => {
-        try {
-            return eval(input)
-        } catch {
-            return "Invalid input"
-        }
+    commit(input) {
+        localStorage.setItem('input', JSON.stringify(input))
     }
 }
 

@@ -14,44 +14,29 @@ export default class View {
     return element
   }
 
-  displayText = (handler) => {
-    let calculated = false
-    let hasPoint = false
+  getEvent = (handler) => {
     for (let i = 0; i < this.querySelector.length; i++) {
-       this.querySelector[i].addEventListener('click', event => {
+      this.querySelector[i].addEventListener('click', event => {
         event.preventDefault()
-        if (calculated) {
-          this.displayElement.innerText = ""
-          calculated = false
-        }
-        if (this.querySelector[i].value === "C") {
-          this.displayElement.innerText = ""
-          return
-        }
-        else if (this.displayElement.innerText == "" && this.querySelector[i].value === "-") {
-          this.displayElement.innerText += this.querySelector[i].value
-          return
-        }
-        else if (this.querySelector[i].value === "." && !hasPoint) {
-          hasPoint = true
-        } else if (this.querySelector[i].value === "." && hasPoint) {
-          return
-        } else if (!parseInt(this.querySelector[i].value) && !parseInt(this.displayElement.innerText[this.displayElement.innerText.length - 1]) && (this.querySelector[i].value !== "0")) {
-          return
-        }
-        else if (!parseInt(this.querySelector[i].value) && parseInt(this.querySelector[i].value !== "0")) {
-          hasPoint = false
-        }
-        if (this.querySelector[i].value === "=") {
-          const output = handler(this.displayElement.innerText)
-          this.displayElement.innerText = output
-          calculated = true
-          hasPoint = false
-          return
-        }
-        this.displayElement.innerText += this.querySelector[i].value
+        handler(this.querySelector[i].value)
       }
       )
-    }
+    } 
   }
+
+  setText = (text) => {
+    this.displayElement.innerText += text
+     return 
+  }
+
+  getText = () => {
+    return this.displayElement.innerText
+  }
+  
+  showResult = (text) =>{
+    this.displayElement.innerText = text
+  }
+
 }
+
+
