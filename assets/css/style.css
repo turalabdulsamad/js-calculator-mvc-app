@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'digital-font';
-    src: url('Digital7-rg1mL.ttf');
+    src: url('../fonts/Digital7-rg1mL.ttf');
 }
 
 button {
@@ -33,11 +33,11 @@ section.main .buttons-wrapper {
     display: flex;
 }
 
-section.main .main-container  .equal {
+section.main .main-container .equal {
     background-color: green;
     min-width: 284px;
 }
 
-section.main .numbers-wrapper{
-display: flex;
+section.main .numbers-wrapper {
+    display: flex;
 }

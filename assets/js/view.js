@@ -5,38 +5,29 @@ export default class View {
   }
 
   getElementByID = (id) => {
-    const element = document.getElementById(id)
-    return element
+     return document.getElementById(id)
   }
 
   getElement = (selector) => {
-    const element = document.querySelectorAll(selector)
-    return element
+    return document.querySelectorAll(selector)
   }
 
-  getEvent = (handler) => {
+  getEvent = (handler, textInLocalStorage) => {
+    this.displayElement.innerText = textInLocalStorage()
     for (let i = 0; i < this.querySelector.length; i++) {
       this.querySelector[i].addEventListener('click', event => {
         event.preventDefault()
         handler(this.querySelector[i].value)
       }
       )
-    } 
+    }
   }
 
   setText = (text) => {
-    this.displayElement.innerText += text
-     return 
+    return this.displayElement.innerText += text
   }
 
-  getText = () => {
-    return this.displayElement.innerText
+  setToValue = (text) => {
+   return  this.displayElement.innerText = text
   }
-  
-  showResult = (text) =>{
-    this.displayElement.innerText = text
-  }
-
 }
-
-
