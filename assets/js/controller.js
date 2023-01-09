@@ -1,46 +1,55 @@
 import Model from '/assets/js/model.js'
 import View from '/assets/js/view.js'
+import Util from '/assets/js/utils.js'
 
 class Controller {
     constructor(model, view) {
         this.model = model
         this.view = view
         this.view.getEvent(this.validate, this.getDisplayingText)
-        this.hasPoint = false
     }
 
     validate = (input) => {
+        let hasPoint = this.model.getHasPointFromLocalStorage()
         let displayingText = this.getDisplayingText()
 
         if (input === "C") {
             displayingText = this.view.setToValue("")
-            this.model.commit("")
+            this.model.commitInput("")
+            this.model.commitHasPoint(false)
             return
         }
         else if (displayingText == "" && input === "-") {
             displayingText = this.view.setText(displayingText + input)
-            this.model.commit(displayingText)
+            this.model.commitInput(displayingText)
             return
         }
-        else if (input === "." && !this.hasPoint) {
-            this.hasPoint = true
-         } else if (input === "." && this.hasPoint) {
-                return
+        else if (input === "." && !hasPoint) {
+            this.model.commitHasPoint(true)
+            console.log(input)
+
+        } else if (input === "." && hasPoint) {
+            return
         } else if (!parseInt(input) && !parseInt(displayingText[displayingText.length - 1]) && (input !== "0")) {
             return
         } else if (!parseInt(input)) {
-            this.hasPoint = false
+            this.model.commitHasPoint(false)
         }
-        
+
         if (input === "=") {
             let result = this.view.setToValue(this.calculate(displayingText))
-            this.model.commit(result)
-            this.hasPoint = false
+            this.model.commitInput(result)
+
+            if (Util.isFloat(result)) {
+                console.log("Sasa")
+                this.model.commitHasPoint(true)
+            }
+
             return
         }
- 
+
         let result = this.view.setText(input)
-        this.model.commit(result)
+        this.model.commitInput(result)
     }
 
     calculate = (input) => {
@@ -52,8 +61,9 @@ class Controller {
     }
 
     getDisplayingText = () => {
-        return this.model.getFromLocalStorage()
+        return this.model.getInputFromLocalStorage()
     }
 }
+
 
 new Controller(new Model(), new View())  

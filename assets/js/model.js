@@ -3,12 +3,20 @@ export default class Model {
         this.input = localStorage.getItem('input')
     }
 
-    commit(input) {
+    commitInput(input) {
         localStorage.setItem('input', input)
     }
 
-    getFromLocalStorage(){
+    commitHasPoint(hasPoint){
+        localStorage.setItem('hasPoint',hasPoint)
+    }
+
+    getInputFromLocalStorage(){
         return localStorage.getItem('input')
+    }
+
+    getHasPointFromLocalStorage(){
+        return JSON.parse(localStorage.getItem('hasPoint'))
     }
 }
 
